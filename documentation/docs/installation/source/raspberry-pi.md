@@ -69,7 +69,7 @@ pip install pandas cython cachetools aiohttp ruamel.yaml eth_account aiokafka sq
 **Step 1. Clone the Hummingbot repo from Github**
 
 ```
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 ```
  
 **Step 2. Clean your Hummingbot directory and compile**

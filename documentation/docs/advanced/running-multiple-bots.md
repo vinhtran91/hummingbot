@@ -5,18 +5,18 @@
 Create multiple instances using `./create.sh` script. More information can be found in [Hummingbot Docker Scripts](/operation/commands/#docker-scripts). Below commands download the create script and make it executable.
 
 ```bash tab="Linux"
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/create.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/create.sh
 chmod a+x *.sh
 ```
 
 ```bash tab="MacOS"
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/create.sh -o create.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/create.sh -o create.sh
 chmod a+x *.sh
 ```
 
 ```bash tab="Windows via Docker Toolbox"
 cd ~
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/create.sh -o create.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/create.sh -o create.sh
 chmod a+x *.sh
 ```
 
@@ -27,18 +27,18 @@ Press keys `Ctrl+P` then `Ctrl+Q` in sequence to detach from Docker i.e. return 
 Restart or connect to a running instance using `./start.sh` script. Below commands download the start script and make it executable.
 
 ```bash tab="Linux"
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/start.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/start.sh
 chmod a+x *.sh
 ```
 
 ```bash tab="MacOS"
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/start.sh -o start.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/start.sh -o start.sh
 chmod a+x *.sh
 ```
 
 ```bash tab="Windows via Docker Toolbox"
 cd ~
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/start.sh -o start.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/start.sh -o start.sh
 chmod a+x *.sh
 ```
 
@@ -51,7 +51,7 @@ Below command downloads the Hummingbot repository from GitHub where `$FOLDER_NAM
 
 ```
 cd ~
-git clone https://github.com/CoinAlpha/hummingbot.git $FOLDER_NAME
+git clone https://github.com/TheHolyRoger/hummingbot.git $FOLDER_NAME
 ```
 
 Do another install in the new directory.

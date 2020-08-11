@@ -78,7 +78,7 @@ Solution 2: make sure you have conda section in ~/.bashrc. Run `conda init` if i
 
 This happens using the docker build version of Hummingbot. By default `hummingbot_scripts` folder is empty but its already mounted by the docker during creation. In able to use the sample scripts make sure to download the scripts into `hummingbot_files/hummingbot_scripts` folder. 
 
-To view or download the sample scripts please visit our [github page](https://github.com/CoinAlpha/hummingbot/tree/master/scripts). Start the bot then enable the scripts using `config script_enabled` then `config script_file_path` to locate and load the sample scripts.
+To view or download the sample scripts please visit our [github page](https://github.com/TheHolyRoger/hummingbot/tree/master/scripts). Start the bot then enable the scripts using `config script_enabled` then `config script_file_path` to locate and load the sample scripts.
 
 !!! Note
     The `hummingbot_files` is the default name of the parent directory. This can be different depending on the setup when the instance was created.

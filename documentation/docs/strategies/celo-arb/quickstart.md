@@ -21,7 +21,7 @@ By default, AWS instances come with 8 GB of storage. We recommend that you incre
 
 ```bash tab="Option 1: Easy Install"
 # 1) Download Docker install script
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/install-docker/install-docker-ubuntu.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/install-docker/install-docker-ubuntu.sh
 
 # 2) Enable script permissions
 chmod a+x install-docker-ubuntu.sh
@@ -71,9 +71,9 @@ Install the Docker version of Hummingbot:
 ```bash tab="Option 1: Easy Install"
 # 1) Download Hummingbot install, start, and update script
 cd ~
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/create.sh
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/start.sh
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/update.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/create.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/start.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/update.sh
 
 # 2) Enable script permissions
 chmod a+x *.sh
@@ -99,7 +99,7 @@ docker run -it \
 --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf/" \
 --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs/" \
 --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data/" \
-coinalpha/hummingbot:latest
+theholiestroger/hummingbot:latest
 ```
 
 Afterwards, Hummingbot will start automatically and prompt you to set a password. After you exit, you can use the `./start.sh` and `./update.sh` commands to run and update Hummingbot, respectively.

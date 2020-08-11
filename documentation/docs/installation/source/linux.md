@@ -15,7 +15,7 @@ You can install Hummingbot with ***either*** of the following options:
 
 ```bash tab="Option 1: Easy Install"
 # 1) Download install script
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/install-from-source/install-source-ubuntu.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/install-from-source/install-source-ubuntu.sh
 
 # 2) Enable script permissions
 chmod a+x install-source-ubuntu.sh
@@ -37,7 +37,7 @@ sh Miniconda3-latest-Linux-x86_64.sh
 exec bash
 
 # 4) Clone Hummingbot
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 
 # 5) Install Hummingbot
 cd hummingbot && ./clean && ./install
@@ -55,7 +55,7 @@ bin/hummingbot.py
 
 ```bash tab="Option 1: Easy Install"
 # 1) Download install script
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/install-from-source/install-source-debian.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/install-from-source/install-source-debian.sh
 
 # 2) Enable script permissions
 chmod a+x install-source-debian.sh
@@ -77,7 +77,7 @@ sh Miniconda3-latest-Linux-x86_64.sh
 exec bash
 
 # 4) Clone Hummingbot
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 
 # 5) Install Hummingbot
 cd hummingbot && ./clean && ./install
@@ -95,7 +95,7 @@ bin/hummingbot.py
 
 ```bash tab="Option 1: Easy Install"
 # 1) Download install script
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/install-from-source/install-source-centos.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/install-from-source/install-source-centos.sh
 
 # 2) Enable script permissions
 chmod a+x install-source-centos.sh
@@ -117,7 +117,7 @@ sh Miniconda3-latest-Linux-x86_64.sh
 exec bash
 
 # 4) Clone Hummingbot
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 
 # 5) Install Hummingbot
 cd hummingbot && ./clean && ./install
@@ -133,5 +133,5 @@ bin/hummingbot.py
 
 ## Developer Notes
 
-- Additional details of the scripts can be found on [Github: Hummingbot Install Scripts](https://github.com/CoinAlpha/hummingbot/tree/development/installation/install-from-source).
+- Additional details of the scripts can be found on [Github: Hummingbot Install Scripts](https://github.com/TheHolyRoger/hummingbot/tree/development/installation/install-from-source).
 - The installation instructions above use [Miniconda3](https://docs.conda.io/en/latest/miniconda.html), a lighter version of [Anaconda](https://www.anaconda.com/) which is sufficient to run Hummingbot.  To learn more about the differences and what works best for you, see [this post](http://deeplearning.lipingyang.org/2018/12/23/anaconda-vs-miniconda-vs-virtualenv/).

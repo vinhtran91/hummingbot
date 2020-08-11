@@ -4,7 +4,7 @@ This section walks you through installing and building Hummingbot from source.
 
 ```bash tab="Manual Installation"
 # 1) Clone Hummingbot repo
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 
 # 2) Navigate into the hummingbot folder
 cd hummingbot

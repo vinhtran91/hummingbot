@@ -19,7 +19,7 @@ sh Miniconda3-latest-Linux-x86_64.sh
 exec bash
 
 # 4) Clone Hummingbot
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 
 # 5) Install Hummingbot
 cd hummingbot && ./clean && ./install
@@ -48,7 +48,7 @@ sh Miniconda3-latest-Linux-x86_64.sh
 exec bash
 
 # 4) Clone Hummingbot
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 
 # 5) Install Hummingbot
 cd hummingbot && ./clean && ./install
@@ -77,7 +77,7 @@ sh Miniconda3-latest-Linux-x86_64.sh
 exec bash
 
 # 4) Clone Hummingbot
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 
 # 5) Install Hummingbot
 cd hummingbot && ./clean && ./install

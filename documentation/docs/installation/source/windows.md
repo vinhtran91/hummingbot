@@ -43,7 +43,7 @@ You can install Hummingbot by selecting ***either*** of the following options fr
 cd ~
 
 # 2) Download install script
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/install-from-source/install-source-windows.sh -o install-source-windows.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/install-from-source/install-source-windows.sh -o install-source-windows.sh
 
 # 3) Enable script permissions
 chmod a+x install-source-windows.sh
@@ -57,7 +57,7 @@ cd ~
 export CONDAPATH="$(pwd)/miniconda3"
 export PYTHON="$(pwd)/miniconda3/envs/hummingbot/python3"
 # Clone Hummingbot
-git clone https://github.com/CoinAlpha/hummingbot.git
+git clone https://github.com/TheHolyRoger/hummingbot.git
 # Install Hummingbot
 export hummingbotPath="$(pwd)/hummingbot" && cd $hummingbotPath && ./install
 # Activate environment and compile code

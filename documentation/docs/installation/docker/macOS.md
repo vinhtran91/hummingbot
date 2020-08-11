@@ -13,9 +13,9 @@ You can install Hummingbot by selecting ***either*** of the following options fr
 
 ```bash tab="Option 1: Easy Install"
 # 1) Download Hummingbot install, start, and update script
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/create.sh -o create.sh
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/start.sh -o start.sh
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/update.sh -o update.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/create.sh -o create.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/start.sh -o start.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/update.sh -o update.sh
 
 # 2) Enable script permissions
 chmod a+x *.sh
@@ -42,7 +42,7 @@ docker run -it \
 --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs/" \
 --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data/" \
 --mount "type=bind,source=$(pwd)/hummingbot_files/hummingbot_scripts,destination=/scripts/" \
-coinalpha/hummingbot:latest
+theholiestroger/hummingbot:latest
 ```
 
 ## Running Hummingbot in the background
@@ -71,4 +71,4 @@ A previous version can be installed when creating a Hummingbot instance.
 
 ```
 
- For example, enter `version-0.16.0`. The versions are listed here in [Hummingbot Tags](https://hub.docker.com/r/coinalpha/hummingbot/tags).
+ For example, enter `version-0.16.0`. The versions are listed here in [Hummingbot Tags](https://hub.docker.com/r/theholiestroger/hummingbot/tags).

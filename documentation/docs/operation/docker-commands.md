@@ -32,25 +32,25 @@ Copy the commands below and paste into the shell or terminal to delete the old s
 
 ```bash tab="Linux"
 rm -rf create.sh start.sh update.sh
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/create.sh
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/start.sh
-wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/update.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/create.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/start.sh
+wget https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/update.sh
 chmod a+x *.sh
 ```
 
 ```bash tab="MacOS"
 rm -rf create.sh start.sh update.sh
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/create.sh -o create.sh
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/start.sh -o start.sh
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/update.sh -o update.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/create.sh -o create.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/start.sh -o start.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/update.sh -o update.sh
 chmod a+x *.sh
 ```
 
 ```bash tab="Windows via Docker Toolbox"
 cd ~
 rm -rf create.sh start.sh update.sh
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/create.sh -o create.sh
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/start.sh -o start.sh
-curl https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/update.sh -o update.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/create.sh -o create.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/start.sh -o start.sh
+curl https://raw.githubusercontent.com/TheHolyRoger/hummingbot/development/installation/docker-commands/update.sh -o update.sh
 chmod a+x *.sh
 ```
