@@ -38,6 +38,7 @@ def main():
         "hummingbot.connector.connector",
         "hummingbot.connector.connector.balancer",
         "hummingbot.connector.exchange",
+        "hummingbot.connector.exchange.altmarkets",
         "hummingbot.connector.exchange.binance",
         "hummingbot.connector.exchange.bitfinex",
         "hummingbot.connector.exchange.bittrex",
