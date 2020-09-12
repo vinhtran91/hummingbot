@@ -20,6 +20,7 @@ from hummingbot.connector.exchange.bittrex.bittrex_market import BittrexOrderBoo
 from hummingbot.connector.exchange.liquid.liquid_market import LiquidOrderBookTracker, LiquidMarket
 from hummingbot.connector.exchange.kucoin.kucoin_market import KucoinOrderBookTracker, KucoinMarket
 from hummingbot.connector.exchange.kraken.kraken_market import KrakenOrderBookTracker, KrakenMarket
+from hummingbot.connector.exchange.altmarkets.altmarkets_market import AltmarketsOrderBookTracker, AltmarketsMarket
 from hummingbot.connector.exchange.crypto_com.crypto_com_exchange import CryptoComOrderBookTracker, CryptoComExchange
 
 ORDER_BOOK_TRACKER_CLASS = {
@@ -33,6 +34,7 @@ ORDER_BOOK_TRACKER_CLASS = {
     "liquid": LiquidOrderBookTracker,
     "kucoin": KucoinOrderBookTracker,
     "kraken": KrakenOrderBookTracker,
+    "altmarkets": AltmarketsOrderBookTracker,
     "crypto_com": CryptoComOrderBookTracker
 }
 
@@ -48,6 +50,7 @@ MARKET_CLASSES = {
     "liquid": LiquidMarket,
     "kucoin": KucoinMarket,
     "kraken": KrakenMarket,
+    "altmarkets": AltmarketsMarket,
     "crypto_com": CryptoComExchange
 }
 
