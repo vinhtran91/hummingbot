@@ -36,6 +36,7 @@ def main():
         "hummingbot.market",
         "hummingbot.connector",
         "hummingbot.connector.exchange",
+        "hummingbot.connector.exchange.altmarkets",
         "hummingbot.connector.exchange.binance",
         "hummingbot.connector.exchange.bitfinex",
         "hummingbot.connector.exchange.bittrex",
