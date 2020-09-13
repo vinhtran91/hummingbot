@@ -21,6 +21,7 @@ HUOBI_ENDPOINT = "https://api.huobi.pro/v1/common/symbols"
 LIQUID_ENDPOINT = "https://api.liquid.com/products"
 BITTREX_ENDPOINT = "https://api.bittrex.com/v3/markets"
 KUCOIN_ENDPOINT = "https://api.kucoin.com/api/v1/symbols"
+ALTMARKETS_ENDPOINT = "https://v2.altmarkets.io/api/v2/peatio/public/markets"
 DOLOMITE_ENDPOINT = "https://exchange-api.dolomite.io/v1/markets"
 ETERBASE_ENDPOINT = "https://api.eterbase.exchange/api/markets"
 KRAKEN_ENDPOINT = "https://api.kraken.com/0/public/AssetPairs"
@@ -276,6 +277,22 @@ class TradingPairFetcher:
                 return []
 
     @staticmethod
+    async def fetch_altmarkets_trading_pairs() -> List[str]:
+        async with aiohttp.ClientSession() as client:
+            async with client.get(ALTMARKETS_ENDPOINT, timeout=API_CALL_TIMEOUT) as response:
+                if response.status == 200:
+                    try:
+                        products: List[Dict[str, Any]] = await response.json()
+                        return [
+                            product["name"].replace("/", "-") for product in products
+                            if product['state'] == "enabled"
+                        ]
+                    except Exception:
+                        pass
+                        # Do nothing if the request fails -- there will be no autocomplete for altmarkets trading pairs
+                return []
+
+    @staticmethod
     async def fetch_kraken_trading_pairs() -> List[str]:
         try:
             async with aiohttp.ClientSession() as client:
@@ -335,6 +352,7 @@ class TradingPairFetcher:
                  self.fetch_kraken_trading_pairs(),
                  self.fetch_radar_relay_trading_pairs(),
                  self.fetch_eterbase_trading_pairs(),
+                 self.fetch_altmarkets_trading_pairs(),
                  self.fetch_crypto_com_trading_pairs()]
 
         # Radar Relay has not yet been migrated to a new version
@@ -354,6 +372,7 @@ class TradingPairFetcher:
             "kraken": results[8],
             "radar_relay": results[9],
             "eterbase": results[10],
+            "altmarkets": results[11],
             "crypto_com": results[11]
         }
         self.ready = True

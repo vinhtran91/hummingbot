@@ -1,3 +1,4 @@
+from hummingbot.connector.exchange.altmarkets.altmarkets_market import AltmarketsMarket
 from hummingbot.connector.exchange.binance.binance_market import BinanceMarket
 from hummingbot.connector.exchange.bittrex.bittrex_market import BittrexMarket
 from hummingbot.connector.exchange.coinbase_pro.coinbase_pro_market import CoinbaseProMarket
@@ -34,6 +35,8 @@ class UserBalances:
             market = HuobiMarket(api_details[0], api_details[1])
         elif exchange == "kucoin":
             market = KucoinMarket(api_details[0], api_details[2], api_details[1])
+        elif exchange == "altmarkets":
+            market = AltmarketsMarket(api_details[0], api_details[1])
         elif exchange == "liquid":
             market = LiquidMarket(api_details[0], api_details[1])
         elif exchange == "kraken":
@@ -54,6 +57,8 @@ class UserBalances:
                 await market._update_account_id()
             elif isinstance(market, KucoinMarket):
                 await market._update_account_id()
+            # elif isinstance(market, AltmarketsMarket):
+            #     await market._update_account_id()
             await market._update_balances()
         except Exception as e:
             return str(e)

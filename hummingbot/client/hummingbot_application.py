@@ -10,6 +10,7 @@ from hummingbot.client.command import __all__ as commands
 from hummingbot.core.clock import Clock
 from hummingbot.logger import HummingbotLogger
 from hummingbot.logger.application_warning import ApplicationWarning
+from hummingbot.connector.exchange.altmarkets.altmarkets_market import AltmarketsMarket
 from hummingbot.connector.exchange.binance.binance_market import BinanceMarket
 from hummingbot.connector.exchange.bittrex.bittrex_market import BittrexMarket
 from hummingbot.connector.exchange.kucoin.kucoin_market import KucoinMarket
@@ -302,6 +303,13 @@ class HummingbotApplication(*commands):
                                        bittrex_secret_key,
                                        trading_pairs=trading_pairs,
                                        trading_required=self._trading_required)
+            elif market_name == "altmarkets":
+                altmarkets_api_key = global_config_map.get("altmarkets_api_key").value
+                altmarkets_secret_key = global_config_map.get("altmarkets_secret_key").value
+                market = AltmarketsMarket(altmarkets_api_key,
+                                          altmarkets_secret_key,
+                                          trading_pairs=trading_pairs,
+                                          trading_required=self._trading_required)
             elif market_name == "kucoin":
                 kucoin_api_key = global_config_map.get("kucoin_api_key").value
                 kucoin_secret_key = global_config_map.get("kucoin_secret_key").value
