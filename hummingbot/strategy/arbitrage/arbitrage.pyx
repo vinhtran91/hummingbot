@@ -9,6 +9,7 @@ from typing import (
 
 from hummingbot.connector.exchange_base import ExchangeBase
 from hummingbot.connector.exchange_base cimport ExchangeBase
+from hummingbot.core.clock cimport Clock
 from hummingbot.core.event.events import (
     TradeType,
     OrderType,
@@ -46,6 +47,7 @@ cdef class ArbitrageStrategy(StrategyBase):
                  market_pairs: List[ArbitrageMarketPair],
                  min_profitability: Decimal,
                  logging_options: int = OPTION_LOG_ORDER_COMPLETED,
+                 tick_size: Decimal = Decimal("1"),
                  status_report_interval: float = 60.0,
                  next_trade_delay_interval: float = 15.0,
                  failed_order_tolerance: int = 1,
@@ -65,6 +67,7 @@ cdef class ArbitrageStrategy(StrategyBase):
             raise ValueError(f"market_pairs must not be empty.")
         super().__init__()
         self._logging_options = logging_options
+        self._tick_size = float(tick_size)
         self._market_pairs = market_pairs
         self._min_profitability = min_profitability
         self._all_markets_ready = False
@@ -152,6 +155,10 @@ cdef class ArbitrageStrategy(StrategyBase):
         if self._hb_app_notification:
             from hummingbot.client.hummingbot_application import HummingbotApplication
             HummingbotApplication.main_application()._notify(msg)
+
+    cdef c_start(self, Clock clock, double timestamp):
+        clock._tick_size = float(self._tick_size)
+        StrategyBase.c_start(self, clock, timestamp)
 
     cdef c_tick(self, double timestamp):
         """

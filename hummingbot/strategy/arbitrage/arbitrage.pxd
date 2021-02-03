@@ -20,6 +20,7 @@ cdef class ArbitrageStrategy(StrategyBase):
         set _sell_markets
         set _buy_markets
         int64_t _logging_options
+        double _tick_size
         object _exchange_rate_conversion
         int _failed_order_tolerance
         bint _cool_off_logged

@@ -90,4 +90,10 @@ arbitrage_config_map = {
         default=Decimal("1"),
         validator=lambda v: validate_decimal(v, Decimal(0), Decimal("100"), inclusive=False),
         type_str="decimal"),
+    "tick_size": ConfigVar(
+        key="tick_size",
+        prompt="Would you like to change the tick size? (in seconds) >>> ",
+        default=Decimal("1.0"),
+        validator=lambda v: validate_decimal(v, Decimal("0"), Decimal("100"), inclusive=True),
+        type_str="decimal"),
 }

@@ -2,11 +2,14 @@
 ###   Arbitrage strategy config   ###
 #####################################
 
-template_version: 4
+template_version: 5
 strategy: null
 
 # The following configuations are only required for the
 # arbitrage strategy
+
+# Tick Size
+tick_size: null
 
 # Exchange and token parameters
 primary_market: null

@@ -10,6 +10,7 @@ from hummingbot.strategy.arbitrage.arbitrage_config_map import arbitrage_config_
 
 
 def start(self):
+    tick_size = arbitrage_config_map.get("tick_size").value
     primary_market = arbitrage_config_map.get("primary_market").value.lower()
     secondary_market = arbitrage_config_map.get("secondary_market").value.lower()
     raw_primary_trading_pair = arbitrage_config_map.get("primary_market_trading_pair").value
@@ -41,6 +42,7 @@ def start(self):
     self.strategy = ArbitrageStrategy(market_pairs=[self.market_pair],
                                       min_profitability=min_profitability,
                                       logging_options=ArbitrageStrategy.OPTION_LOG_ALL,
+                                      tick_size=tick_size,
                                       secondary_to_primary_base_conversion_rate=secondary_to_primary_base_conversion_rate,
                                       secondary_to_primary_quote_conversion_rate=secondary_to_primary_quote_conversion_rate,
                                       hb_app_notification=True)
