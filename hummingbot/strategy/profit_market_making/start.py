@@ -5,14 +5,14 @@ from typing import (
 
 from hummingbot.client.hummingbot_application import HummingbotApplication
 from hummingbot.strategy.market_trading_pair_tuple import MarketTradingPairTuple
-from hummingbot.strategy.pure_market_making import (
-    PureMarketMakingStrategy,
+from hummingbot.strategy.profit_market_making import (
+    ProfitMarketMakingStrategy,
     OrderBookAssetPriceDelegate,
     APIAssetPriceDelegate,
     InventoryCostPriceDelegate,
     MarketIndicatorDelegate,
 )
-from hummingbot.strategy.pure_market_making.pure_market_making_config_map import pure_market_making_config_map as c_map
+from hummingbot.strategy.profit_market_making.profit_market_making_config_map import profit_market_making_config_map as c_map
 from hummingbot.connector.exchange.paper_trade import create_paper_trade_market
 from hummingbot.connector.exchange_base import ExchangeBase
 from decimal import Decimal
@@ -92,9 +92,9 @@ def start(self):
             indicator_refresh_time = c_map.get("market_indicator_refresh_time").value
             market_indicator_delegate = MarketIndicatorDelegate(indicator_url, indicator_key, indicator_refresh_time)
 
-        strategy_logging_options = PureMarketMakingStrategy.OPTION_LOG_ALL
+        strategy_logging_options = ProfitMarketMakingStrategy.OPTION_LOG_ALL
 
-        self.strategy = PureMarketMakingStrategy(
+        self.strategy = ProfitMarketMakingStrategy(
             market_info=MarketTradingPairTuple(*maker_data),
             bid_spread=bid_spread,
             ask_spread=ask_spread,
