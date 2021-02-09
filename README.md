@@ -46,6 +46,7 @@ We created hummingbot to promote **decentralized market-making**: enabling membe
 | <img src="assets/kraken_logo.png" alt="Kraken" width="90" /> | kraken | [Kraken](https://www.kraken.com/) | 1 | [API](https://www.kraken.com/features/api) | ![YELLOW](https://via.placeholder.com/15/ffff00/?text=+) |
 | <img src="assets/liquid_logo.png" alt="Liquid" width="90" /> | liquid | [Liquid](https://www.liquid.com/) | 2 | [API](https://developers.liquid.com/) | ![GREEN](https://via.placeholder.com/15/008000/?text=+) |
 | <img src="assets/okex_logo.png" alt="OKEx" width="90" /> | okex | [OKEx](https://www.okex.com/) | 3 | [API](https://www.okex.com/docs/en/) | ![GREEN](https://via.placeholder.com/15/008000/?text=+) |
+| <img src="assets/altmarkets_logo1.png" alt="AltMarkets.io" width="90" /> | altmarkets | [AltMarkets.io](https://altmarkets.io/) | 2 | [API](https://altmarkets.io/) | ![GREEN](https://via.placeholder.com/15/008000/?text=+) | Connector is working properly
 
 
 
