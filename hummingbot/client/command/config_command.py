@@ -21,6 +21,9 @@ from hummingbot.client.config.security import Security
 from hummingbot.client.config.config_var import ConfigVar
 from hummingbot.core.utils.async_utils import safe_ensure_future
 from hummingbot.model.inventory_cost import InventoryCost
+from hummingbot.strategy.profit_market_making import (
+    ProfitMarketMakingStrategy
+)
 from hummingbot.strategy.pure_market_making import (
     PureMarketMakingStrategy
 )
@@ -34,7 +37,11 @@ if TYPE_CHECKING:
 
 
 no_restart_pmm_keys_in_percentage = ["bid_spread", "ask_spread", "order_level_spread", "inventory_target_base_pct"]
+pmm_k_append_perc = ["track_tradehistory_allowed_loss", "track_tradehistory_profit_wanted", "track_tradehistory_ownside_allowedloss", "market_indicator_reduce_orders_to_pct"]
+no_restart_pmm_keys_in_percentage = no_restart_pmm_keys_in_percentage + pmm_k_append_perc
 no_restart_pmm_keys = ["order_amount", "order_levels", "filled_order_delay", "inventory_skew_enabled", "inventory_range_multiplier"]
+pmm_k_append = ["track_tradehistory_enabled", "track_tradehistory_hours", "track_tradehistory_ownside_enabled", "track_tradehistory_careful_enabled", "track_tradehistory_careful_limittrades"]
+no_restart_pmm_keys = no_restart_pmm_keys + pmm_k_append
 global_configs_to_display = ["0x_active_cancels",
                              "kill_switch_enabled",
                              "kill_switch_rate",
@@ -161,6 +168,7 @@ class ConfigCommand:
             for config in missings:
                 self._notify(f"{config.key}: {str(config.value)}")
             if isinstance(self.strategy, PureMarketMakingStrategy) or \
+               isinstance(self.strategy, ProfitMarketMakingStrategy) or \
                isinstance(self.strategy, PerpetualMarketMakingStrategy):
                 updated = ConfigCommand.update_running_mm(self.strategy, key, config_var.value)
                 if updated:
