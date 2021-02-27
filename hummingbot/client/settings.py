@@ -176,7 +176,7 @@ MAXIMUM_TRADE_FILLS_DISPLAY_OUTPUT = 100
 
 CONNECTOR_SETTINGS = _create_connector_settings()
 DERIVATIVES = {cs.name for cs in CONNECTOR_SETTINGS.values() if cs.type is ConnectorType.Derivative}
-EXCHANGES = {cs.name for cs in CONNECTOR_SETTINGS.values() if cs.type is ConnectorType.Exchange}
+EXCHANGES = sorted([cs.name for cs in CONNECTOR_SETTINGS.values() if cs.type is ConnectorType.Exchange])
 OTHER_CONNECTORS = {cs.name for cs in CONNECTOR_SETTINGS.values() if cs.type is ConnectorType.Connector}
 ETH_WALLET_CONNECTORS = {cs.name for cs in CONNECTOR_SETTINGS.values() if cs.use_ethereum_wallet}
 ALL_CONNECTORS = {"exchange": EXCHANGES, "connector": OTHER_CONNECTORS, "derivative": DERIVATIVES}
