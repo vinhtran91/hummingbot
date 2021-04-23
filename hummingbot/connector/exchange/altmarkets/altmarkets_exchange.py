@@ -181,6 +181,8 @@ class AltmarketsExchange(ExchangeBase):
         """
         This function is called automatically by the clock.
         """
+        if self._poll_notifier.is_set():
+            self._poll_notifier.clear()
         super().start(clock, timestamp)
 
     def stop(self, clock: Clock):
@@ -324,7 +326,7 @@ class AltmarketsExchange(ExchangeBase):
             qs_params: dict = params if method.upper() == "GET" else None
             req_params = ujson.dumps(params) if method.upper() == "POST" and params is not None else None
             # Generate auth headers if needed.
-            headers: dict = {"Content-Type": "application/json"}
+            headers: dict = {"Content-Type": "application/json", "User-Agent": Constants.USER_AGENT}
             if is_auth_required:
                 headers: dict = self._altmarkets_auth.get_headers()
             # Build request coro
@@ -439,6 +441,7 @@ class AltmarketsExchange(ExchangeBase):
                       "side": trade_type.name.lower(),
                       "ord_type": order_type_str,
                       # "price": f"{price:f}",
+                      "client_id": order_id,
                       "volume": f"{amount:f}",
                       }
         if order_type is not OrderType.MARKET:
@@ -540,8 +543,9 @@ class AltmarketsExchange(ExchangeBase):
             raise
         except AltmarketsAPIError as e:
             errors_found = e.error_payload.get('errors', e.error_payload)
-            order_state = errors_found.get("state", None)
-            if order_state is None:
+            if isinstance(errors_found, dict):
+                order_state = errors_found.get("state", None)
+            if order_state is None or 'market.order.invaild_id_or_uuid' in errors_found:
                 self._order_not_found_records[order_id] = self._order_not_found_records.get(order_id, 0) + 1
         if order_state in Constants.ORDER_STATES['CANCEL_WAIT'] or \
                 self._order_not_found_records.get(order_id, 0) >= self.ORDER_NOT_EXIST_CANCEL_COUNT:
@@ -683,8 +687,6 @@ class AltmarketsExchange(ExchangeBase):
         order_msg["trade_fee"] = self.estimate_fee_pct(tracked_order.order_type is OrderType.LIMIT_MAKER)
         try:
             updated = tracked_order.update_with_order_update(order_msg)
-            # Call Update balances on every message to catch order create, fill and cancel.
-            safe_ensure_future(self._update_balances())
         except Exception as e:
             self.logger().error(f"Error in order update for {tracked_order.exchange_order_id}. Message: {order_msg}\n{e}")
             traceback.print_exc()
@@ -728,13 +730,16 @@ class AltmarketsExchange(ExchangeBase):
         # Estimate fee
         trade_msg["trade_fee"] = self.estimate_fee_pct(tracked_order.order_type is OrderType.LIMIT_MAKER)
         updated = tracked_order.update_with_trade_update(trade_msg)
-        # Call Update balances on every message to catch order create, fill and cancel.
-        safe_ensure_future(self._update_balances())
 
         if not updated:
             return
 
         await self._trigger_order_fill(tracked_order, trade_msg)
+
+    def _process_balance_message(self, balance_message: Dict[str, Any]):
+        asset_name = balance_message["currency"].upper()
+        self._account_available_balances[asset_name] = Decimal(str(balance_message["balance"]))
+        self._account_balances[asset_name] = Decimal(str(balance_message["locked"])) + Decimal(str(balance_message["balance"]))
 
     async def _trigger_order_fill(self,
                                   tracked_order: AltmarketsInFlightOrder,
@@ -812,7 +817,8 @@ class AltmarketsExchange(ExchangeBase):
         """
         now = time.time()
         poll_interval = (Constants.SHORT_POLL_INTERVAL
-                         if now - self._user_stream_tracker.last_recv_time > 120.0
+                         if not self._user_stream_tracker.is_connected
+                         or now - self._user_stream_tracker.last_recv_time > Constants.USER_TRACKER_MAX_AGE
                          else Constants.LONG_POLL_INTERVAL)
         last_tick = int(self._last_timestamp / poll_interval)
         current_tick = int(timestamp / poll_interval)
@@ -857,6 +863,7 @@ class AltmarketsExchange(ExchangeBase):
         async for event_message in self._iter_user_event_queue():
             try:
                 event_methods = [
+                    Constants.WS_METHODS["USER_BALANCES"],
                     Constants.WS_METHODS["USER_ORDERS"],
                     Constants.WS_METHODS["USER_TRADES"],
                 ]
@@ -870,6 +877,8 @@ class AltmarketsExchange(ExchangeBase):
                         await self._process_trade_message(params)
                     elif method == Constants.WS_METHODS["USER_ORDERS"]:
                         self._process_order_message(params)
+                    elif method == Constants.WS_METHODS["USER_BALANCES"]:
+                        self._process_balance_message(params)
             except asyncio.CancelledError:
                 raise
             except Exception:

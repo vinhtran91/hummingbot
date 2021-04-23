@@ -2,12 +2,12 @@
 class Constants:
     EXCHANGE_NAME = "altmarkets"
     REST_URL = "https://v2.altmarkets.io/api/v2/peatio"
-    # WS_PRIVATE_URL = "wss://stream.crypto.com/v2/user"
     WS_PRIVATE_URL = "wss://v2.altmarkets.io/api/v2/ranger/private"
-    # WS_PUBLIC_URL = "wss://stream.crypto.com/v2/market"
     WS_PUBLIC_URL = "wss://v2.altmarkets.io/api/v2/ranger/public"
 
     HBOT_BROKER_ID = "HBOT"
+
+    USER_AGENT = "HBOT_AMv2"
 
     ENDPOINT = {
         # Public Endpoints
@@ -26,7 +26,7 @@ class Constants:
     WS_SUB = {
         "TRADES": "{trading_pair}.trades",
         "ORDERS": "{trading_pair}.ob-inc",
-        "USER_ORDERS_TRADES": ['order', 'trade'],
+        "USER_ORDERS_TRADES": ['balance', 'order', 'trade'],
 
     }
 
@@ -34,6 +34,7 @@ class Constants:
         "ORDERS_SNAPSHOT": ".ob-snap",
         "ORDERS_UPDATE": ".ob-inc",
         "TRADES_UPDATE": ".trades",
+        "USER_BALANCES": "balance",
         "USER_ORDERS": "order",
         "USER_TRADES": "trade",
     }
@@ -54,11 +55,13 @@ class Constants:
 
     # Intervals
     # Only used when nothing is received from WS
-    SHORT_POLL_INTERVAL = 5.0
-    # One minute should be fine since we request balance updates on order updates
-    LONG_POLL_INTERVAL = 60.0
+    SHORT_POLL_INTERVAL = 10.0
+    # Two minutes should be fine since we get balances via WS
+    LONG_POLL_INTERVAL = 120.0
     # Two minutes should be fine for order status since we get these via WS
     UPDATE_ORDER_STATUS_INTERVAL = 120.0
+    # We don't get many messages here if we're not updating orders so set this pretty high
+    USER_TRACKER_MAX_AGE = 300.0
     # 10 minute interval to update trading rules, these would likely never change whilst running.
     INTERVAL_TRADING_RULES = 600
 

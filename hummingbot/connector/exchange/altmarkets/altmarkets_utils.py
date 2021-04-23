@@ -2,6 +2,7 @@ import aiohttp
 import asyncio
 import random
 import re
+import ujson
 from dateutil.parser import parse as dateparse
 from typing import (
     Any,
@@ -78,7 +79,7 @@ def get_new_client_order_id(is_buy: bool, trading_pair: str) -> str:
     quote = symbols[1].upper()
     base_str = f"{base[0:4]}{base[-1]}"
     quote_str = f"{quote[0:2]}{quote[-1]}"
-    return f"{Constants.HBOT_BROKER_ID}-{side}-{base_str}{quote_str}-{get_tracking_nonce()}"
+    return f"{Constants.HBOT_BROKER_ID}-{side}{base_str}{quote_str}{get_tracking_nonce()}"
 
 
 def retry_sleep_time(try_count: int) -> float:
@@ -98,14 +99,19 @@ async def aiohttp_response_with_errors(request_coroutine):
                 request_errors = True
                 try:
                     parsed_response = await response.text('utf-8')
-                    if len(parsed_response) < 1:
-                        parsed_response = None
-                    elif len(parsed_response) > 100:
-                        parsed_response = f"{parsed_response[:100]} ... (truncated)"
+                    try:
+                        parsed_response = ujson.loads(parsed_response)
+                    except Exception:
+                        if len(parsed_response) < 1:
+                            parsed_response = None
+                        elif len(parsed_response) > 100:
+                            parsed_response = f"{parsed_response[:100]} ... (truncated)"
                 except Exception:
                     pass
             TempFailure = (parsed_response is None or
-                           (response.status not in [200, 201] and "errors" not in parsed_response))
+                           (response.status not in [200, 201] and
+                            "errors" not in parsed_response and
+                            "error" not in parsed_response))
             if TempFailure:
                 parsed_response = response.reason if parsed_response is None else parsed_response
                 request_errors = True
@@ -120,7 +126,7 @@ async def api_call_with_retries(method,
                                 shared_client=None,
                                 try_count: int = 0) -> Dict[str, Any]:
     url = f"{Constants.REST_URL}/{endpoint}"
-    headers = {"Content-Type": "application/json"}
+    headers = {"Content-Type": "application/json", "User-Agent": Constants.USER_AGENT}
     http_client = shared_client if shared_client is not None else aiohttp.ClientSession()
     # Build request coro
     response_coro = http_client.request(method=method.upper(), url=url, headers=headers,
