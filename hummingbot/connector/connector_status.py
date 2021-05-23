@@ -22,6 +22,7 @@ connector_status = {
     'ftx': 'yellow',
     'hitbtc': 'green',
     'huobi': 'green',
+    'gate_io': 'yellow',
     'kraken': 'green',
     'kucoin': 'green',
     'k2': 'red',
